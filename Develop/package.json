@@ -8,7 +8,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --verbose test/*"
+    "test": "jest --verbose test/*",
+    "watch": "nodemon app",
+    "start": "node app"
   },
   "repository": {
     "type": "git",
