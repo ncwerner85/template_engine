@@ -9,6 +9,9 @@ const Intern = require("./lib/Intern");
 
 // Output
 const OUTPUT_DIR = path.resolve(__dirname, "output");
+// After you have your html, you're now ready to create an HTML file using the HTML
+// returned from the `render` function. Now write it to a file named `team.html` in the
+// `output` folder. You can use the variable `outputPath` above target this location.
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
@@ -129,20 +132,17 @@ function intern() {
     });
 };
 
-function finishTeam() {
-    fs.writeFileSync(outputPath, render(employeeTeam), "utf-8")
-    console.log(employeeTeam)
-}
-
-manager();
-
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
 
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
+function finishTeam() {
+    fs.writeFileSync(outputPath, render(employeeTeam), "utf-8")
+}
+
+manager();
+
+
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
