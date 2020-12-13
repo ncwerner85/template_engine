@@ -63,10 +63,10 @@ function addMember() {
             ]
         }
     ]).then(function(data){
-        if (data.chooseMember === " An Engineer"){
+        if (data.chooseMember === "An Engineer"){
             engineer();
         } else if (data.chooseMember === "An Intern"){
-            inter();
+            intern();
         } else (finishTeam());
     });
 };
@@ -97,8 +97,37 @@ function engineer() {
         const engineer = new Engineer(data.engineerName, data.engineerId, data.engineerEmail, data.engineerGithub);
         employeeTeam.push(engineer)
         addMember()
-    })
+    });
 };
+
+function intern() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is the intern's name?"
+        },
+        {
+            type: "input",
+            name: "internId",
+            message: "What is the intern's ID?"
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What is the intern's email?"
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "What is the intern's school?"
+        }
+    ]).then(function(data){
+        const intern = new Intern(data.internName, data.internId, data.internEmail, data.internSchool);
+        employeeTeam.push(intern)
+        addMember()
+    });
+}
 
 manager();
 
