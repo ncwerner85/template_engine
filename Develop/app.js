@@ -71,6 +71,35 @@ function addMember() {
     });
 };
 
+function engineer() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "What is the engineer's name?"
+        },
+        {
+            type: "input",
+            name: "engineerId",
+            message: "What is the engineer's ID?"
+        },
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "What is the engineer's email?"
+        },
+        {
+            type: "input",
+            name: "engineerGithub",
+            message: "What is the engineer's Github username?"
+        }
+    ]).then(function(data){
+        const engineer = new Engineer(data.engineerName, data.engineerId, data.engineerEmail, data.engineerGithub);
+        employeeTeam.push(engineer)
+        addMember()
+    })
+};
+
 manager();
 
 // After the user has input all employees desired, call the `render` function (required
