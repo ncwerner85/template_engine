@@ -44,7 +44,7 @@ const employeeQuestions = [
 function manager() {
     console.log("Lets start building your team!");
     inquirer.prompt(employeeQuestions).then(function(data){
-        const manager = new Manager(data.managername, data.managerId, data.managerEmail, data.managerNumber);
+        const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.managerNumber);
         employeeTeam.push(manager)
         addMember()
     })
@@ -127,6 +127,11 @@ function intern() {
         employeeTeam.push(intern)
         addMember()
     });
+};
+
+function finishTeam() {
+    fs.writeFileSync(outputPath, render(employeeTeam), "utf-8")
+    console.log(employeeTeam)
 }
 
 manager();
