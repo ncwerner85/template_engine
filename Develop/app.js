@@ -1,22 +1,53 @@
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+// Classes
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+
+// Output
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const questions = [
+const employeeTeam = [];
+
+const employeeQuestions = [
     {
-        type: "confirm",
-        name: "makeTeam",
-        message: "Would you like to create a new team? (y/n)"
+        type: "input",
+        name: "managerName",
+        message: "What is the manager's name?"
+    },
+    {
+        type: "input",
+        name: "managerId",
+        message: "What is the manager's ID?"
+    },
+    {
+        type: "input",
+        name: "managerEmail",
+        message: "What is the manager's email?"
+    },
+    {
+        type: "input",
+        name: "managerNumber",
+        message: "What is the manager's office number?"
     }
-]
+];
+
+function manager() {
+    console.log("Lets start building your team!");
+    inquirer.prompt(employeeQuestions).then(function(data){
+        const manager = new Manager(data.managername, data.managerId, data.managerEmail, data.managerNumber);
+        employeeTeam.push(manager)
+        console.log(manager)
+    })
+};
+
+manager();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -39,9 +70,3 @@ const questions = [
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
-
-function init() {
-    inquirer.prompt(questions)
-}
-
-init();
